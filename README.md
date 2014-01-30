@@ -39,12 +39,12 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     ```Ruby
     # bad - four spaces
     def some_method
-        do_something
+    ····do_something
     end
 
     # good
     def some_method
-      do_something
+    ··do_something
     end
     ```
 
