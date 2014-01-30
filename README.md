@@ -83,11 +83,8 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     class FooError < StandardError
     end
 
-    # okish
-    class FooError < StandardError; end
-
     # good
-    FooError = Class.new(StandardError)
+    class FooError < StandardError; end
     ```
 
 * Avoid single-line methods. Although they are somewhat popular in the
@@ -143,38 +140,25 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     e = M * c**2
     ```
 
-    `{` and `}` deserve a bit of clarification, since they are used
-    for block and hash literals, as well as embedded expressions in
-    strings. For hash literals two styles are considered acceptable.
+* Hash literals should be padded with a single space.
 
     ```Ruby
-    # good - space after { and before }
-    { one: 1, two: 2 }
-
-    # good - no space after { and before }
+    # bad
     {one: 1, two: 2}
+    
+    # good
+    { one: 1, two: 2 }
     ```
 
-    The first variant is slightly more readable (and arguably more
-    popular in the Ruby community in general). The second variant has
-    the advantage of adding visual difference between block and hash
-    literals. Whichever one you pick - apply it consistently.
-
-    As far as embedded expressions go, there are also two acceptable
-    options:
+* No spaces for embedded expression.
 
     ```Ruby
-    # good - no spaces
-    "string#{expr}"
-
-    # ok - arguably more readable
+    # bad
     "string#{ expr }"
+    
+    # good
+    "string#{expr}"
     ```
-
-    The first style is extremely more popular and you're generally
-    advised to stick with it. The second, on the other hand, is
-    (arguably) a bit more readable. As with hashes - pick one style
-    and apply it consistently.
 
 * No spaces after `(`, `[` or before `]`, `)`.
 
@@ -226,7 +210,7 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
 * When assigning the result of a conditional expression to a variable, preserve the usual alignment of its branches.
 
     ```Ruby
-    # bad - pretty convoluted
+    # bad
     kind = case year
     when 1850..1889 then 'Blues'
     when 1890..1909 then 'Ragtime'
@@ -236,13 +220,7 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     else 'Jazz'
     end
 
-    result = if some_cond
-      calc_something
-    else
-      calc_something_else
-    end
-
-    # good - it's apparent what's going on
+    # bad
     kind = case year
            when 1850..1889 then 'Blues'
            when 1890..1909 then 'Ragtime'
@@ -252,13 +230,7 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
            else 'Jazz'
            end
 
-    result = if some_cond
-               calc_something
-             else
-               calc_something_else
-             end
-
-    # good (and a bit more width efficient)
+    # good
     kind =
       case year
       when 1850..1889 then 'Blues'
@@ -268,7 +240,22 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
       when 1940..1950 then 'Bebop'
       else 'Jazz'
       end
+      
+    # bad
+    result = if some_cond
+      calc_something
+    else
+      calc_something_else
+    end
 
+    # bad
+    result = if some_cond
+               calc_something
+             else
+               calc_something_else
+             end
+
+    # good
     result =
       if some_cond
         calc_something
@@ -312,22 +299,19 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     some_method(size, count, color)
     ```
 
-* Use spaces around the `=` operator when assigning default values to method parameters:
+* No spaces around the `=` operator when assigning default values to method parameters:
 
     ```Ruby
     # bad
-    def some_method(arg1=:default, arg2=nil, arg3=[])
+    def some_method(arg1 = :default, arg2 = nil, arg3 = [])
       # do something...
     end
 
     # good
-    def some_method(arg1 = :default, arg2 = nil, arg3 = [])
+    def some_method(arg1=:default, arg2=nil, arg3=[])
       # do something...
     end
     ```
-
-    While several Ruby books suggest the first style, the second is much more prominent
-    in practice (and arguably a bit more readable).
 
 * Avoid line continuation `\` where not required. In practice, avoid using
   line continuations for anything but string concatenation.
@@ -1087,24 +1071,14 @@ you if you forget either of the rules above!
     end
     ```
 
-* Prefer `proc` over `Proc.new`.
-
-    ```Ruby
-    # bad
-    p = Proc.new { |n| puts n }
-
-    # good
-    p = proc { |n| puts n }
-    ```
-
-* Prefer `proc.call()` over `proc[]` or `proc.()` for both lambdas and procs.
+* Prefer `proc.call()` or `proc.()` over `proc[]` for both lambdas and procs.
 
     ```Ruby
     # bad - looks similar to Enumeration access
     l = ->(v) { puts v }
     l[1]
 
-    # also bad - uncommon syntax
+    # ok
     l = ->(v) { puts v }
     l.(1)
 
@@ -1169,17 +1143,17 @@ setting the warn level to 0 via `-W0`).
     # => 'one, two, three'
     ```
 
-* Use `[*var]` or `Array()` instead of explicit `Array` check, when dealing with a
+* Use `Array()` instead of `[*var]` or explicit `Array` check, when dealing with a
   variable you want to treat as an Array, but you're not certain it's
   an array.
 
     ```Ruby
     # bad
+    [*paths].each { |path| do_something(path) }
+    
+    # bad
     paths = [paths] unless paths.is_a? Array
     paths.each { |path| do_something(path) }
-
-    # good
-    [*paths].each { |path| do_something(path) }
 
     # good (and a bit more readable)
     Array(paths).each { |path| do_something(path) }
@@ -1363,23 +1337,22 @@ setting the warn level to 0 via `-W0`).
   end in a question mark.
 * The names of potentially *dangerous* methods (i.e. methods that
   modify `self` or the arguments, `exit!` (doesn't run the finalizers
-  like `exit` does), etc.) should end with an exclamation mark if
-  there exists a safe version of that *dangerous* method.
+  like `exit` does), etc.) should end with an exclamation mark.
 
     ```Ruby
-    # bad - there is not matching 'safe' method
+    # bad - update() is potentially dangerous (in this example)
+    class Person
+      def update
+      end
+    end
+    
+    # good
     class Person
       def update!
       end
     end
 
-    # good
-    class Person
-      def update
-      end
-    end
-
-    # good
+    # good - update() has a safe alternative
     class Person
       def update!
       end
@@ -1410,7 +1383,7 @@ setting the warn level to 0 via `-W0`).
     end
     ```
 
-* When using `reduce` with short blocks, name the arguments `|a, e|`
+* When using `reduce` with short blocks, name the arguments `|acc, e|`
   (accumulator, element).
 * When defining binary operators, name the argument `other`(`<<` and
   `[]` are exceptions to the rule, since their semantics are different).
@@ -1421,13 +1394,15 @@ setting the warn level to 0 via `-W0`).
     end
     ```
 
-* Prefer `map` over `collect`, `find` over `detect`, `select` over
-  `find_all`, `reduce` over `inject` and `size` over `length`. This is
-  not a hard requirement; if the use of the alias enhances
-  readability, it's ok to use it. The rhyming methods are inherited from
-  Smalltalk and are not common in other programming languages. The
-  reason the use of `select` is encouraged over `find_all` is that it
-  goes together nicely with `reject` and its name is pretty self-explanatory.
+* Prefer `map` over `collect`, `detect` over `find`, `select` over
+  `find_all`, `inject` over `reduce`,  and `length` over `size`. 
+
+  * This is not a hard requirement; if the use of the alias enhances
+    readability, it's ok to use it. The rhyming methods are inherited from
+    Smalltalk and are not common in other programming languages. 
+    
+  * The reason the use of `select` is encouraged over `find_all` is that it
+    goes together nicely with `reject` and its name is pretty self-explanatory.
 
 * Use `flat_map` instead of `map` + `flatten`.
   This does not apply for arrays with a depth greater than 2, i.e.
@@ -1840,18 +1815,6 @@ in *Ruby* now, not in *Python*.
 
 ## Exceptions
 
-* Signal exceptions using the `fail` method. Use `raise` only when
-  catching an exception and re-raising it (because here you're not
-  failing, but explicitly and purposefully raising an exception).
-
-    ```Ruby
-    begin
-      fail 'Oops'
-    rescue => error
-      raise if error.message != 'Oops'
-    end
-    ```
-
 * Don't specify `RuntimeError` explicitly in the two argument version of `fail/raise`.
 
     ```Ruby
@@ -2097,22 +2060,23 @@ this rule only to arrays with two or more elements.
     STATES = %i(draft open closed)
     ```
 
-* Avoid comma after the last item of an `Array` or `Hash` literal, especially
-  when the items are not on separate lines.
+* Avoid comma after the last item of a single-line `Array` or `Hash` literal.
 
     ```Ruby
-    # bad - easier to move/add/remove items, but still not preferred
-    VALUES = [
-               1001,
-               2020,
-               3333,
-             ]
 
     # bad
     VALUES = [1001, 2020, 3333, ]
 
     # good
     VALUES = [1001, 2020, 3333]
+    
+    # good - easier to move/add/remove items
+    VALUES = [
+               1001,
+               2020,
+               3333,
+             ]
+    
     ```
 
 * Avoid the creation of huge gaps in arrays.
@@ -2216,22 +2180,14 @@ this rule only to arrays with two or more elements.
     email_with_name = "#{user.name} <#{user.email}>"
     ```
 
-* Consider padding string interpolation code with space. It more clearly sets the
-  code apart from the string.
-
-    ```Ruby
-    "#{ user.last_name }, #{ user.first_name }"
-    ```
-
-* Prefer single-quoted strings when you don't need string interpolation or
-  special symbols such as `\t`, `\n`, `'`, etc.
+* Prefer double-quoted strings.
 
     ```Ruby
     # bad
-    name = "Bozhidar"
+    name = 'Bozhidar'
 
     # good
-    name = 'Bozhidar'
+    name = "Bozhidar"
     ```
 
 * Don't use the character literal syntax `?x`. Since Ruby 1.9 it's
@@ -2316,9 +2272,9 @@ this rule only to arrays with two or more elements.
 * For simple constructions you can use regexp directly through string index.
 
     ```Ruby
-    match = string[/regexp/]             # get content of matched regexp
-    first_group = string[/text(grp)/, 1] # get content of captured group
-    string[/text (grp)/, 1] = 'replace'  # string => 'text replace'
+    match = string.match(/regexp/)             # get content of matched regexp
+    first_group = string.match(/text(grp)/, 1) # get content of captured group
+    string.match(/text (grp)/, 1) = 'replace'  # string => 'text replace'
     ```
 
 * Use non-capturing groups when you don't use captured result of parentheses.
