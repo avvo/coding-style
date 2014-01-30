@@ -400,19 +400,19 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
 
     ```Ruby
     # bad - single indent
-    menu_item = ["Spam", "Spam", "Spam", "Spam", "Spam", "Spam", "Spam", "Spam",
-      "Baked beans", "Spam", "Spam", "Spam", "Spam", "Spam"]
+    menu_item = ['Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
+      'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam']
 
     # good
     menu_item = [
-      "Spam", "Spam", "Spam", "Spam", "Spam", "Spam", "Spam", "Spam",
-      "Baked beans", "Spam", "Spam", "Spam", "Spam", "Spam"
+      'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
+      'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam'
     ]
 
     # good
     menu_item =
-      ["Spam", "Spam", "Spam", "Spam", "Spam", "Spam", "Spam", "Spam",
-       "Baked beans", "Spam", "Spam", "Spam", "Spam", "Spam"]
+      ['Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
+       'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam']
     ```
 
 * Add underscores to large numeric literals to improve their readability.
@@ -613,7 +613,7 @@ Never use `::` for regular method invocation.
 
     # good
     x = 'test'
-    if !x.nil?
+    unless x.nil?
       # body omitted
     end
     ```
@@ -1342,6 +1342,10 @@ setting the warn level to 0 via `-W0`).
       ...
     end
     ```
+
+* Use `snake_case` for naming files, e.g. `hello_world.rb`.
+
+* Aim to have just a single class/module per source file. Name the file name as the class/module, but replacing CamelCase with snake_case.
 
 * Use `SCREAMING_SNAKE_CASE` for other constants.
 
