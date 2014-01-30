@@ -1,4 +1,4 @@
-Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide) | [JavaScript](https://github.com/avvo/javascript-style-guide)
+Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide/blob/master/README.md) | [JavaScript](https://github.com/avvo/javascript-style-guide/blob/master/README.md)
 
 ---
 
