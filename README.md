@@ -36,7 +36,8 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
 * Use `UTF-8` as the source file encoding.
 * Use two **spaces** per indentation level (aka soft tabs). No hard tabs.
 
-    ```Ruby
+  ```Ruby
+
     # bad - four spaces
     def some_method
     ····do_something
@@ -46,17 +47,10 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     def some_method
     ··do_something
     end
-    ```
 
-* Use Unix-style line endings. (*BSD/Solaris/Linux/OS X users are covered by default,
-  Windows users have to be extra careful.)
-    * If you're using Git you might want to add the following
-    configuration setting to protect your project from Windows line
-    endings creeping in:
+  ```
 
-    ```bash
-    $ git config --global core.autocrlf true
-    ```
+* Use Unix-style line endings.
 
 * Don't use `;` to separate statements and expressions. As a
   corollary - use one expression per line.
@@ -96,13 +90,13 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     # bad
     def too_much; something; something_else; end
 
-    # okish - notice that the first ; is required
+    # bad - notice that the first ; is required
     def no_braces_method; body end
 
-    # okish - notice that the second ; is optional
+    # bad - notice that the second ; is optional
     def no_braces_method; body; end
 
-    # okish - valid syntax, but no ; make it kind of hard to read
+    # bad - valid syntax, but no ; make it kind of hard to read
     def some_method() body end
 
     # good
@@ -287,16 +281,23 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     ```Ruby
     # bad - easier to move/add/remove parameters, but still not preferred
     some_method(
-                 size,
-                 count,
-                 color,
-               )
+       size,
+       count,
+       color,
+     )
 
     # bad
     some_method(size, count, color, )
 
     # good
     some_method(size, count, color)
+
+    # good
+    some_method(
+      size,
+      count,
+      color
+    )
     ```
 
 * No spaces around the `=` operator when assigning default values to method parameters:
@@ -321,12 +322,13 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     result = 1 - \
              2
 
-    # good (but still ugly as hell)
+    # bad
     result = 1 \
              - 2
 
-    long_string = 'First part of the long string' \
-                  ' and second part of the long string'
+    long_string =
+      'First part of the long string' \
+      ' and second part of the long string'
     ```
 
 * When continuing a chained method invocation on another line keep the `.` on the second line.
@@ -341,10 +343,8 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
       .four
     ```
 
-* Align the parameters of a method call if they span more than one
-  line. When aligning parameters is not appropriate due to line-length
-  constraints, single indent for the lines after the first is also
-  acceptable.
+* If the parameters of a method call result in a long line, split the
+  parameters onto multiple lines. Align the parameters with a single indent.
 
     ```Ruby
     # starting point (line is too long)
@@ -361,7 +361,7 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
           body: source.text)
     end
 
-    # good
+    # bad (deep indent)
     def send_mail(source)
       Mailer.deliver(to: 'bob@example.com',
                      from: 'us@example.com',
@@ -387,16 +387,16 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     menu_item = ['Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
       'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam']
 
-    # good
-    menu_item = [
-      'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
-      'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam'
-    ]
-
-    # good
+    # bad
     menu_item =
       ['Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
        'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam']
+
+     # good
+     menu_item = [
+       'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
+       'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam'
+     ]
     ```
 
 * Add underscores to large numeric literals to improve their readability.
@@ -612,7 +612,7 @@ Never use `::` for regular method invocation.
       do_something
     end
 
-    # control flow
+    # bad - control flow
     document.saved? or document.save!
 
     # good
@@ -621,8 +621,8 @@ Never use `::` for regular method invocation.
       do_something
     end
 
-    # control flow
-    document.saved? || document.save!
+    # good - explicit control flow
+    document.save! unless document.saved?
     ```
 
 * Avoid multi-line `?:` (the ternary operator); use `if/unless` instead.
@@ -636,11 +636,11 @@ Never use `::` for regular method invocation.
       do_something
     end
 
+    # bad - obscure control flow
+    some_condition && do_something
+
     # good
     do_something if some_condition
-
-    # another good option
-    some_condition && do_something
     ```
 
 * Favor `unless` over `if` for negative conditions (or control
@@ -653,11 +653,11 @@ Never use `::` for regular method invocation.
     # bad
     do_something if not some_condition
 
+    # bad - obscure control flow
+    some_condition || do_something
+
     # good
     do_something unless some_condition
-
-    # another good option
-    some_condition || do_something
     ```
 
 * Never use `unless` with `else`. Rewrite these with the positive case first.
@@ -737,28 +737,30 @@ Never use `::` for regular method invocation.
     do_something until some_condition
     ```
 
-* Use `Kernel#loop` with break rather than `begin/end/until` or `begin/end/while` for post-loop tests.
+* Use `begin/end/until` or `begin/end/while` rather than `Kernel#loop`
+  with break for post-loop tests.
 
    ```Ruby
    # bad
-   begin
-     puts val
-     val += 1
-   end while val < 0
-
-   # good
    loop do
      puts val
      val += 1
      break unless val < 0
    end
+
+   # good
+   begin
+     puts val
+     val += 1
+   end while val < 0
    ```
 
 * Omit parentheses around parameters for methods that are part of an
   internal DSL (e.g. Rake, Rails, RSpec), methods that have
   "keyword" status in Ruby (e.g. `attr_reader`, `puts`) and attribute
   access methods. Use parentheses around the arguments of all other
-  method invocations.
+  method invocations. Always use parenthesis if the result of the method
+  is used or stored.
 
     ```Ruby
     class Person
@@ -841,6 +843,11 @@ Never use `::` for regular method invocation.
 
     # good
     names.select { |name| name.start_with?('S') }.map { |name| name.upcase }
+
+    # good
+    names
+      .select { |name| name.start_with?('S') }
+      .map { |name| name.upcase }
     ```
 
     Some will argue that multiline chaining would look OK with the use of {...}, but they should
@@ -938,7 +945,7 @@ Never use `::` for regular method invocation.
     end
     ```
 
-* Don't use the return value of `=` (an assignment) in conditional
+* Avoid using the return value of `=` (an assignment) in conditional
   expressions unless the assignment is wrapped in parentheses. This is
   a fairly popular idiom among Rubyists that's sometimes referred to as
   *safe assignment in condition*.
@@ -963,6 +970,32 @@ Never use `::` for regular method invocation.
       ...
     end
     ```
+
+* Use assignments in conditional expressions if it helps reduce nested
+  conditionals.
+
+  ```Ruby
+  # bad - nested conditionals
+  if conditional
+  else
+    v = method(foo)
+    if v
+      do_something(v)
+    end
+  end
+
+  # bad - repeated method call
+  if conditional
+  elsif method(foo)
+    do_something(method(foo)
+  end
+
+  # good
+  if conditional
+  elsif (v = method(foo))
+    do_something(v)
+  end
+  ```
 
 * Use `||=` freely to initialize variables.
 
@@ -1071,14 +1104,14 @@ you if you forget either of the rules above!
     end
     ```
 
-* Prefer `proc.call()` or `proc.()` over `proc[]` for both lambdas and procs.
+* Prefer `proc.call()` over `proc.()` or `proc[]` for both lambdas and procs.
 
     ```Ruby
     # bad - looks similar to Enumeration access
     l = ->(v) { puts v }
     l[1]
 
-    # ok
+    # bad
     l = ->(v) { puts v }
     l.(1)
 
@@ -1143,8 +1176,7 @@ setting the warn level to 0 via `-W0`).
     # => 'one, two, three'
     ```
 
-* Use `Array()` instead of `[*var]` or explicit `Array` check, when dealing with a
-  variable you want to treat as an Array, but you're not certain it's
+* Use `Array()` instead of `[*var]` or explicit `Array` check, when dealing with a variable you want to treat as an Array, but you're not certain it's
   an array.
 
     ```Ruby
@@ -1335,6 +1367,7 @@ setting the warn level to 0 via `-W0`).
   should end in a question mark.
   (i.e. `Array#empty?`). Methods that don't return a boolean, shouldn't
   end in a question mark.
+
 * The names of potentially *dangerous* methods (i.e. methods that
   modify `self` or the arguments, `exit!` (doesn't run the finalizers
   like `exit` does), etc.) should end with an exclamation mark.
@@ -1383,9 +1416,7 @@ setting the warn level to 0 via `-W0`).
     end
     ```
 
-* When using `reduce` with short blocks, name the arguments `|acc, e|`
-  (accumulator, element).
-* When defining binary operators, name the argument `other`(`<<` and
+* When defining binary operators, name the argument `other` (`<<` and
   `[]` are exceptions to the rule, since their semantics are different).
 
     ```Ruby
@@ -1757,9 +1788,10 @@ in inheritance.
     over class variables.
 
 * Assign proper visibility levels to methods (`private`, `protected`)
-in accordance with their intended usage. Don't go off leaving
-everything `public` (which is the default). After all we're coding
-in *Ruby* now, not in *Python*.
+  in accordance with their intended usage. Don't go off leaving
+  everything `public` (which is the default). After all we're coding
+  in *Ruby* now, not in *Python*.
+
 * Indent the `public`, `protected`, and `private` methods as much the
   method definitions they apply to. Leave one blank line above the
   visibility modifier
@@ -2036,28 +2068,25 @@ pass parameters to their constructors, that is).
     hash = {}
     ```
 
-* Prefer `%w` to the literal array syntax when you need an array of
-words(non-empty strings without spaces and special characters in them).
-Apply this rule only to arrays with two or more elements.
+* Prefer the literal array syntax to `%w` when you need an array of
+  words (non-empty strings without spaces and special characters in them).
 
     ```Ruby
     # bad
-    STATES = ['draft', 'open', 'closed']
+    STATES = %w(draft open closed)
 
     # good
-    STATES = %w(draft open closed)
+    STATES = ['draft', 'open', 'closed']
     ```
 
-* Prefer `%i` to the literal array syntax when you need an array of
-symbols(and you don't need to maintain Ruby 1.9 compatibility). Apply
-this rule only to arrays with two or more elements.
+* Prefer the literal array syntax to `%i` when you need an array of symbols.
 
     ```Ruby
     # bad
-    STATES = [:draft, :open, :closed]
+    STATES = %i(draft open closed)
 
     # good
-    STATES = %i(draft open closed)
+    STATES = [:draft, :open, :closed]
     ```
 
 * Avoid comma after the last item of a single-line `Array` or `Hash` literal.
@@ -2072,10 +2101,10 @@ this rule only to arrays with two or more elements.
     
     # good - easier to move/add/remove items
     VALUES = [
-               1001,
-               2020,
-               3333,
-             ]
+       1001,
+       2020,
+       3333,
+     ]
     
     ```
 
@@ -2103,6 +2132,7 @@ this rule only to arrays with two or more elements.
     ```
 
 * Avoid the use of mutable objects as hash keys.
+
 * Use the hash literal syntax when your hash keys are symbols.
 
     ```Ruby
@@ -2199,7 +2229,7 @@ this rule only to arrays with two or more elements.
     char = ?c
 
     # good
-    char = 'c'
+    char = "c"
     ```
 
 * Don't leave out `{}` around instance and global variables being
@@ -2269,6 +2299,7 @@ this rule only to arrays with two or more elements.
 
 * Don't use regular expressions if you just need plain text search in string:
   `string['text']`
+
 * For simple constructions you can use regexp directly through string index.
 
     ```Ruby
@@ -2299,8 +2330,7 @@ this rule only to arrays with two or more elements.
     ```
 
 
-* Avoid using numbered groups as it can be hard to track what they contain. Named groups
-  can be used instead.
+* Avoid using numbered groups as it can be hard to track what they contain. Named groups can be used instead.
 
     ```Ruby
     # bad
