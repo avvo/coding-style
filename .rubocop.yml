@@ -1,0 +1,788 @@
+# Commented blocks are Rubocop's default settings.
+# See https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+
+AllCops:
+  # # list of files to exclude from linting, e.g. '**/*.gemspec'
+  # Excludes: []
+
+  RunRailsCops: true
+
+
+#################################### Style ###################################
+# Most of the cops in RuboCop are so called style cops that check for
+# stylistics problems in your code. Almost all of the them are based on the
+# Ruby Style Guide.
+
+# AccessModifierIndentation:
+#   Description: 'Check indentation of private/protected visibility modifiers.'
+#
+#   EnforcedStyle: indent
+#   SupportedStyles:
+#     - outdent
+#     - indent
+
+# AccessorMethodName:
+#   Description: 'Check the naming of accessor methods for get_/set_.'
+
+# Alias:
+#   Description: 'Use alias_method instead of alias.'
+
+# AlignArray:
+#   Description: 'Align the elements of an array literal if they span more than one line.'
+
+AlignHash:
+  Description: 'Align the elements of a hash literal if they span more than one line.'
+  Enabled: false
+  #
+  # # Alignment of entries using hash rocket as separator. Valid values are:
+  # #
+  # # key - left alignment of keys
+  # #   'a' => 2
+  # #   'bb' => 3
+  # # separator - alignment of hash rockets, keys are right aligned
+  # #    'a' => 2
+  # #   'bb' => 3
+  # # table - left alignment of keys, hash rockets, and values
+  # #   'a'  => 2
+  # #   'bb' => 3
+  # EnforcedHashRocketStyle: key
+  #
+  # # Alignment of entries using colon as separator. Valid values are:
+  # #
+  # # key - left alignment of keys
+  # #   a: 0
+  # #   bb: 1
+  # # separator - alignment of colons, keys are right aligned
+  # #    a: 0
+  # #   bb: 1
+  # # table - left alignment of keys and values
+  # #   a:  0
+  # #   bb: 1
+  # EnforcedColonStyle: key
+
+# AlignParameters:
+#   Description: 'Align the parameters of a method call if they span more than one line.'
+
+# AndOr:
+#   Description: 'Use &&/|| instead of and/or.'
+
+# AsciiComments:
+#   Description: 'Use only ascii symbols in comments.'
+
+# AsciiIdentifiers:
+#   Description: 'Use only ascii symbols in identifiers.'
+
+# Attr:
+#   Description: 'Checks for uses of Module#attr.'
+
+# BeginBlock:
+#   Description: 'Avoid the use of BEGIN blocks.'
+
+# BlockComments:
+#   Description: 'Do not use block comments.'
+
+# BlockNesting:
+#   Description: 'Avoid excessive block nesting'
+#
+#   Max: 3
+
+# Blocks:
+#   Description: >-
+#                 Avoid using {...} for multi-line blocks (multiline chaining is
+#                 always ugly).
+#                 Prefer {...} over do...end for single-line blocks.
+
+# BracesAroundHashParameters:
+#   Description: 'Enforce braces style inside hash parameters.'
+#
+#   EnforcedStyle: no_braces
+#   SupportedStyles:
+#     - braces
+#     - no_braces
+
+# CaseEquality:
+#   Description: 'Avoid explicit use of the case equality operator(===).'
+
+# CaseIndentation:
+#   Description: 'Indentation of when in a case/when/[else/]end.'
+#
+#   IndentWhenRelativeTo: case
+#   SupportedStyles:
+#     - case
+#     - end
+#   IndentOneStep: false
+
+# CharacterLiteral:
+#   Description: 'Checks for uses of character literals.'
+
+# ClassAndModuleCamelCase:
+#   Description: 'Use CamelCase for classes and modules.'
+
+ClassLength:
+  Description: 'Avoid classes longer than 100 lines of code.'
+  Enabled: false
+  #
+  # CountComments: false  # count full line comments?
+  # Max: 100
+
+# ClassMethods:
+#   Description: 'Use self when defining module/class methods.'
+
+# ClassVars:
+#   Description: 'Avoid the use of class variables.'
+
+# CollectionMethods:
+#   Description: 'Preferred collection methods.'
+#
+#   PreferredMethods:
+#     collect:  'map'
+#     collect!: 'map!'
+#     inject:   'reduce'
+#     detect:   'find'
+#     find_all: 'select'
+
+# ColonMethodCall:
+#   Description: 'Do not use :: for method call.'
+
+# CommentAnnotation:
+#   Description: 'Checks formatting of special comments'
+#
+# rubocop:disable CommentAnnotation
+#   Keywords:
+#     - TODO
+#     - FIXME
+#     - OPTIMIZE
+#     - HACK
+#     - REVIEW
+# rubocop:enable CommentAnnotation
+
+# ConstantName:
+#   Description: 'Constants should use SCREAMING_SNAKE_CASE.'
+
+# CyclomaticComplexity:
+#   Description: 'Avoid complex methods.'
+#
+#   Max: 6
+
+# DefWithParentheses:
+#   Description: 'Use def with parentheses when there are arguments.'
+
+# Documentation:
+#   Description: 'Document classes and non-namespace modules.'
+
+# DotPosition:
+#   Description: 'Checks the position of the dot in multi-line method calls.'
+#
+#   Style: leading
+#   SupportedStyles:
+#     - leading
+#     - trailing
+
+# EmptyLineBetweenDefs:
+#   Description: 'Use empty lines between defs.'
+#
+#   # If true, this parameter means that single line method definitions don't
+#   # need an empty line between them.
+#   AllowAdjacentOneLineDefs: false
+
+# EmptyLines:
+#   Description: "Don't use several empty lines in a row."
+
+# EmptyLinesAroundAccessModifier:
+#   Description: "Keep blank lines around access modifiers."
+
+# EmptyLinesAroundBody:
+#   Description: "Keeps track of empty lines around expression bodies."
+
+# EmptyLiteral:
+#   Description: 'Prefer literals to Array.new/Hash.new/String.new.'
+
+# Encoding:
+#   Description: 'Use UTF-8 as the source file encoding.'
+
+# # Align ends correctly.
+# EndAlignment:
+#   # The value `keyword` means that `end` should be aligned with the matching
+#   # keyword (if, while, etc.).
+#   # The value `variable` means that in assignments, `end` should be aligned
+#   # with the start of the variable on the left hand side of `=`. In all other
+#   # situations, `end` should still be aligned with the keyword.
+#   AlignWith: keyword
+#   SupportedStyles:
+#     - keyword
+#     - variable
+
+# EndBlock:
+#   Description: 'Avoid the use of END blocks.'
+
+# EndOfLine:
+#   Description: 'Use Unix-style line endings.'
+
+# EvenOdd:
+#   Description: 'Favor the use of Fixnum#even? && Fixnum#odd?'
+
+# FavorJoin:
+#   Description: 'Use Array#join instead of Array#*.'
+
+# FavorUnlessOverNegatedIf:
+#   Description: >-
+#                  Favor unless over if for negative conditions
+#                  (or control flow or).
+
+# FavorUntilOverNegatedWhile:
+#   Description: 'Favor until over while for negative conditions.'
+
+# FileName:
+#   Description: 'Use snake_case for source file names.'
+
+# FinalNewline:
+#   Description: 'Checks for a final newline in a source file.'
+
+# FlipFlop:
+#   Description: 'Checks for flip flops'
+
+# For:
+#   Description: 'Checks use of for or each in multiline loops.'
+#
+#   EnforcedStyle: each
+#   SupportedStyles:
+#     - for
+#     - each
+
+# FormatString:
+#   Description: 'Enforce the use of Kernel#sprintf, Kernel#format or String#%.'
+#
+#   EnforcedStyle: format
+#   SupportedStyles:
+#     - format
+#     - sprintf
+#     - percent
+
+# GlobalVars:
+#   Description: 'Do not introduce global variables.'
+#
+#   AllowedVariables: []
+
+# HashMethods:
+#   Description: 'Checks for use of deprecated Hash methods.'
+
+HashSyntax:
+  # Description: 'Prefer Ruby 1.9 hash syntax { a: 1, b: 2 } over 1.8 syntax { :a => 1, :b => 2 }.'
+  Description: 'Use hash rockets syntax { :a => 1, :b => 2 }'
+  Enabled: true
+
+  EnforcedStyle: hash_rockets
+  SupportedStyles:
+    - ruby19
+    - hash_rockets
+
+# IfUnlessModifier:
+#   Description: >-
+#                  Favor modifier if/unless usage when you have a
+#                  single-line body.
+
+# IfWithSemicolon:
+#   Description: 'Never use if x; .... Use the ternary operator instead.'
+
+# IndentationConsistency:
+#   Description: 'Keep indentation straight.'
+
+# IndentationWidth:
+#   Description: 'Use 2 spaces for indentation.'
+
+# IndentHash:
+#   Description: 'Checks the indentation of the first key in a hash literal.'
+#
+#   # The value `special_inside_parentheses` means that hash literals with braces
+#   # that have their opening brace on the same line as a surrounding opening
+#   # round parenthesis, shall have their first key indented relative to the
+#   # first position inside the parenthesis.
+#   # The value `consistent` means that the indentation of the first key shall
+#   # always be relative to the first position of the line where the opening
+#   # brace is.
+#   EnforcedStyle: special_inside_parentheses
+#   SupportedStyles:
+#     - special_inside_parentheses
+#     - consistent
+
+# Lambda:
+#   Description: 'Use the new lambda literal syntax for single-line blocks.'
+
+# LambdaCall:
+#   Description: 'Use lambda.call(...) instead of lambda.(...).'
+#
+#   EnforcedStyle: call
+#   SupportedStyles:
+#     - call
+#     - braces
+
+# LeadingCommentSpace:
+#   Description: 'Comments should start with a space.'
+
+# LineEndConcatenation:
+#   Description: 'Use \\ instead of + to concatenate two string literals at line end.'
+
+LineLength:
+  # Description: 'Limit lines to 100 characters.'
+  # Max: 100
+  Enabled: false
+
+# MethodCallParentheses:
+#   Description: 'Do not use parentheses for method calls with no arguments.'
+
+# MethodCalledOnDoEndBlock:
+#   Description: 'Avoid chaining a method call on a do...end block.'
+#   Enabled: false
+
+# MethodDefParentheses:
+#   Description: >-
+#                  Checks if the method definitions have or don't have
+#                  parentheses.
+#
+#   EnforcedStyle: require_parentheses
+#   SupportedStyles:
+#     - require_parentheses
+#     - require_no_parentheses
+
+MethodLength:
+  Description: 'Avoid methods longer than 15 lines of code.'
+  Enabled: true
+
+  CountComments: false  # count full line comments?
+  Max: 15
+
+# MethodName:
+#   Description: 'Use the configured style when naming methods.'
+#
+#   EnforcedStyle: snake_case
+#   SupportedStyles:
+#     - snake_case
+#     - camelCase
+
+# ModuleFunction:
+#   Description: 'Checks for usage of `extend self` in modules.'
+
+# MultilineBlockChain:
+#   Description: 'Avoid multi-line chains of blocks.'
+
+# MultilineIfThen:
+#   Description: 'Never use then for multi-line if/unless.'
+
+# MultilineTernaryOperator:
+#   Description: >-
+#                  Avoid multi-line ?: (the ternary operator);
+#                  use if/unless instead.
+
+# NestedTernaryOperator:
+#   Description: 'Use one expression per branch in a ternary operator.'
+
+# NilComparison:
+#   Description: 'Prefer x.nil? to x == nil.'
+
+# Not:
+#   Description: 'Use ! instead of not.'
+
+# NumericLiterals:
+#   Description: 'Add underscores to large numeric literals to improve their readability.'
+#
+#   MinDigits: 5
+
+# OneLineConditional:
+#   Description: >-
+#                  Favor the ternary operator(?:) over
+#                  if/then/else/end constructs.
+
+# OpMethod:
+#   Description: 'When defining binary operators, name the argument other.'
+
+# ParameterLists:
+#   Description: 'Avoid parameter lists longer than three or four parameters.'
+#
+#   Max: 5
+#   CountKeywordArgs: true
+
+# ParenthesesAroundCondition:
+#   Description: "Don't use parentheses around the condition of an if/unless/while."
+#
+#   AllowSafeAssignment: true # Allow safe assignment in conditions.
+
+# PerlBackrefs:
+#   Description: 'Avoid Perl-style regex back references.'
+
+# PredicateName:
+#   Description: 'Check the names of predicate methods.'
+#
+#   NamePrefixBlacklist:
+#     - is_
+#     - has_
+#     - have_
+
+# Proc:
+#   Description: 'Use proc instead of Proc.new.'
+
+# RaiseArgs:
+#   Description: 'Checks the arguments passed to raise/fail.'
+#
+#   EnforcedStyle: exploded
+#   SupportedStyles:
+#     - compact # raise Exception.new(msg)
+#     - exploded # raise Exception, msg
+
+# RedundantBegin:
+#   Description: "Don't use begin blocks when they are not needed."
+
+# RedundantException:
+#   Description: "Checks for an obsolete RuntimeException argument in raise/fail."
+
+# RedundantReturn:
+#   Description: "Don't use return where it's not required."
+#
+#   # When true allows code like `return x, y`.
+#   AllowMultipleReturnValues: false
+
+# RedundantSelf:
+#   Description: "Don't use self where it's not needed."
+
+# RegexpLiteral:
+#   Description: >-
+#                  Use %r for regular expressions matching more than
+#                  `MaxSlashes` '/' characters.
+#                  Use %r only for regular expressions matching more than
+#                  `MaxSlashes` '/' character.
+#
+#   MaxSlashes: 1
+
+# RescueModifier:
+#   Description: 'Avoid using rescue in its modifier form.'
+
+# Semicolon:
+#   Description: "Don't use semicolons to terminate expressions."
+#
+#   # Allow ; to separate several expressions on the same line.
+#   AllowAsExpressionSeparator: false
+
+# SignalException:
+#   Description: 'Checks for proper usage of fail and raise.'
+#
+#   EnforcedStyle: semantic
+#   SupportedStyles:
+#     - only_raise
+#     - only_fail
+#     - semantic
+
+# SingleLineBlockParams:
+#   Description: 'Enforces the names of some block params.'
+#
+#   Methods:
+#     - reduce:
+#         - a
+#         - e
+#     - inject:
+#         - a
+#         - e
+
+# SingleLineMethods:
+#   Description: 'Avoid single-line methods.'
+#
+#   AllowIfMethodIsEmpty: true
+
+# SpaceAfterColon:
+#   Description: 'Use spaces after colons.'
+
+# SpaceAfterComma:
+#   Description: 'Use spaces after commas.'
+
+# SpaceAfterControlKeyword:
+#   Description: 'Use spaces after if/elsif/unless/while/until/case/when.'
+
+# SpaceAfterMethodName:
+#   Description: >-
+#                  Never put a space between a method name and the opening
+#                  parenthesis.
+
+# SpaceAfterNot:
+#   Description: Tracks redundant space after the ! operator.
+
+# SpaceAfterSemicolon:
+#   Description: 'Use spaces after semicolons.'
+
+# SpaceAroundBlockBraces:
+#   Description: >-
+#                  Checks that block braces have or don't have surrounding space.
+#                  For blocks taking parameters, checks that the left brace has
+#                  or doesn't have trailing space.
+#
+#   EnforcedStyle: space_inside_braces
+#   SupportedStyles:
+#     - space_inside_braces
+#     - no_space_inside_braces
+#   # Valid values are: space, no_space
+#   EnforcedStyleForEmptyBraces: no_space
+#   # Space between { and |. Overrides EnforcedStyle if there is a conflict.
+#   SpaceBeforeBlockParameters: true
+
+# SpaceAroundEqualsInParameterDefault:
+#   Description: >-
+#                  Use spaces around the = operator when assigning default
+#                  values in def params.
+
+# SpaceAroundOperators:
+#   Description: 'Use spaces around operators.'
+
+# SpaceBeforeModifierKeyword:
+#   Description: 'Put a space before the modifier keyword.'
+
+# SpaceInsideBrackets:
+#   Description: 'No spaces after [ or before ].'
+
+# SpaceInsideHashLiteralBraces:
+#   Description: "Use spaces inside hash literal braces - or don't."
+#
+#   EnforcedStyle: space
+#   EnforcedStyleForEmptyBraces: no_space
+#   SupportedStyles:
+#     - space
+#     - no_space
+
+# SpaceInsideParens:
+#   Description: 'No spaces after ( or before ).'
+
+# SpecialGlobalVars:
+#   Description: 'Avoid Perl-style global variables.'
+
+StringLiterals:
+  Description: 'Checks if uses of quotes match the configured preference.'
+  Enabled: false
+
+  EnforcedStyle: single_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
+# SymbolArray:
+#   Description: 'Use %i or %I for arrays of symbols.'
+#   Enabled: false
+
+# Tab:
+#   Description: 'No hard tabs.'
+
+# TrailingBlankLines:
+#   Description: 'Checks for superfluous trailing blank lines.'
+
+# TrailingComma:
+#   Description: 'Checks for trailing comma in parameter lists and literals.'
+#
+#   EnforcedStyleForMultiline: no_comma
+#   SupportedStyles:
+#     - comma
+#     - no_comma
+
+# TrailingWhitespace:
+#   Description: 'Avoid trailing whitespace.'
+
+# TrivialAccessors:
+#   Description: 'Prefer attr_* methods to trivial readers/writers.'
+#
+#   # TrivialAccessors doesn't require exact name matches and doesn't allow
+#   # predicated methods by default.
+#   ExactNameMatch: false
+#   AllowPredicates: false
+#   Whitelist:
+#     - to_ary
+#     - to_a
+#     - to_c
+#     - to_enum
+#     - to_h
+#     - to_hash
+#     - to_i
+#     - to_int
+#     - to_io
+#     - to_open
+#     - to_path
+#     - to_proc
+#     - to_r
+#     - to_regexp
+#     - to_str
+#     - to_s
+#     - to_sym
+
+# UnlessElse:
+#   Description: >-
+#                  Never use unless with else. Rewrite these with the positive
+#                  case first.
+
+# VariableInterpolation:
+#   Description: >-
+#                  Don't interpolate global, instance and class variables
+#                  directly in strings.
+
+# VariableName:
+#   Description: 'Use the configured style when naming variables.'
+#
+#   EnforcedStyle: snake_case
+#   SupportedStyles:
+#     - snake_case
+#     - camelCase
+
+# WhenThen:
+#   Description: 'Use when x then ... for one-line cases.'
+
+# WhileUntilDo:
+#   Description: 'Checks for redundant do after while or until.'
+
+# WhileUntilModifier:
+#   Description: >-
+#                  Favor modifier while/until usage when you have a
+#                  single-line body.
+
+# WordArray:
+#   Description: 'Use %w or %W for arrays of words.'
+#
+#   MinSize: 0
+
+
+
+
+#################################### Lint ####################################
+# Lint cops check for possible errors and very bad practices in your code.
+# RuboCop implements in a portable way all built-in MRI lint checks (ruby -wc)
+# and adds a lot of extra lint checks of its own. You can run only the lint
+# cops like this:
+#
+#   $ rubocop -l
+
+
+# AmbiguousOperator:
+#   Description: >-
+#                  Checks for ambiguous operators in the first argument of a
+#                  method invocation without parentheses.
+
+# AmbiguousRegexpLiteral:
+#   Description: >-
+#                  Checks for ambiguous regexp literals in the first argument of
+#                  a method invocation without parenthesis.
+
+# AssignmentInCondition:
+#   Description: "Don't use assignment in conditions."
+
+# BlockAlignment:
+#   Description: 'Align block ends correctly.'
+
+# ConditionPosition:
+#   Description: 'Checks for condition placed in a confusing position relative to the keyword.'
+
+# Debugger:
+#   Description: 'Check for debugger calls.'
+
+# DeprecatedClassMethods:
+#   Description: 'Check for deprecated class method calls.'
+
+# ElseLayout:
+#   Description: 'Check for odd code arrangement in an else block.'
+
+# EmptyEnsure:
+#   Description: 'Checks for empty ensure block.'
+
+# EndAlignment:
+#   Description: 'Align ends correctly.'
+
+# EndInMethod:
+#   Description: 'END blocks should not be placed inside method definitions.'
+
+# EnsureReturn:
+#   Description: 'Never use return in an ensure block.'
+
+# Eval:
+#   Description: 'The use of eval represents a serious security risk.'
+
+# HandleExceptions:
+#   Description: "Don't suppress exception."
+
+# InvalidCharacterLiteral:
+#   Description: >-
+#                  Checks for invalid character literals with a non-escaped
+#                  whitespace character.
+
+# LiteralInCondition:
+#   Description: 'Checks of literals used in conditions.'
+
+# LiteralInInterpolation:
+#   Description: 'Checks for literals used in interpolation.'
+
+# Loop:
+#   Description: >-
+#                  Use Kernel#loop with break rather than begin/end/until or
+#                  begin/end/while for post-loop tests.
+
+# ParenthesesAsGroupedExpression:
+#   Description: >-
+#                  Checks for method calls with a space before the opening
+#                  parenthesis.
+
+# RequireParentheses:
+#   Description: >-
+#                  Use parentheses in the method call to avoid confusion
+#                  about precedence.
+
+# RescueException:
+#   Description: 'Avoid rescuing the Exception class.'
+
+# ShadowingOuterLocalVariable:
+#   Description: >-
+#                  Do not use the same name as outer local variable
+#                  for block arguments or block local variables.
+
+# StringConversionInInterpolation:
+#   Description: 'Checks for Object#to_s usage in string interpolation.'
+
+# UnreachableCode:
+#   Description: 'Unreachable code.'
+
+# UselessAssignment:
+#   Description: 'Checks for useless assignment to a local variable.'
+
+# UselessComparison:
+#   Description: 'Checks for comparison of something with itself.'
+
+# UselessElseWithoutRescue:
+#   Description: 'Checks for useless `else` in `begin..end` without `rescue`.'
+
+# UselessSetterCall:
+#   Description: 'Checks for useless setter call to a local variable.'
+
+# Void:
+#   Description: 'Possible use of operator/literal/variable in void context.'
+
+
+
+
+################################### Rails ####################################
+# Rails cops are specific to the Ruby on Rails framework.
+
+# DefaultScope:
+#   Description: 'Checks if the argument passed to default_scope is a block.'
+#
+#   IncludePaths:
+#     - app/models
+
+# HasAndBelongsToMany:
+#   Description: 'Prefer has_many :through to has_and_belongs_to_many.'
+#
+#   IncludePaths:
+#     - app/models
+
+# Output:
+#   Description: 'Checks for calls to puts, print, etc.'
+
+# ReadAttribute:
+#   Description: 'Prefer self[:attribute] over read_attribute(:attribute).'
+#
+#   IncludePaths:
+#     - app/models
+
+# Validation:
+#   Description: 'Use sexy validations.'
+#
+#   IncludePaths:
+#     - app/models
