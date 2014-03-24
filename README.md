@@ -17,19 +17,19 @@ Welcome! These guides, in combination with our configured linters, should help y
   * [Linters](#linters)
   * [Contributing](#contributing)
 
-# Guides
+## Guides
 
 * [Ruby](https://github.com/avvo/coding-style/blob/master/guides/ruby.md)
 * [Rails](https://github.com/avvo/coding-style/blob/master/guides/rails.md)
 * [JavaScript](https://github.com/avvo/coding-style/blob/master/guides/javascript.md)
 
 
-# General Rules
+## General Rules
 
 * Favor readability over cleverness
 
 
-## Formatting
+### Formatting
 
 * Use `UTF-8` as the source file encoding.
 * Use two **space** indentation (aka soft tabs). No hard tabs.
@@ -37,7 +37,7 @@ Welcome! These guides, in combination with our configured linters, should help y
 * No trailing whitespace.
 
 
-## Comments
+### Comments
 
 > Good code is its own best documentation. As you're about to add a
 > comment, ask yourself, "How can I improve the code so that this
@@ -58,7 +58,7 @@ at all.
   make it self-explanatory.
 
 
-### Comment Annotations
+#### Comment Annotations
 
 * `TODO`: missing features or functionality that should be
   added at a later date.
@@ -97,23 +97,23 @@ at all.
 
 **[[⬆]](#TOC)**
 
-# Linters
+## Linters
 
 Linters make it simple to adhere to the guidelines, so be sure you have them installed!
 
-## JSHint
+### JSHint
 [JSHint](http://www.jshint.com/) is a JavaScript code style checker based on Doug Crockford's less forgiving [JSLint](http://www.jslint.com/). Configured with `.jshint` files. To install:
 
 1. `brew install node`
 2. `npm install -g jshint`
 3. If you are using `nvm` and `zsh`, ensure that the line to load `nvm` is in `.zshenv` and not `.zshrc`.
 
-## Rubocop
+### Rubocop
 [RuboCop](https://github.com/bbatsov/rubocop) is a Ruby code style checker based on the [Ruby Community Style Guide](https://github.com/bbatsov/ruby-style-guide). Configured with `.rubocop.yml` files. To install:
 
 1. `gem install rubocop`
 
-## SublimeLinter
+### SublimeLinter
 
 [SublimeLinter](http://sublimelinter.readthedocs.org/en/latest/index.html) is a Sublime Text plugin that will automatically lint your code as you edit. To install:
 
