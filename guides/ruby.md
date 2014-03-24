@@ -1,4 +1,4 @@
-Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide/blob/master/README.md) | [JavaScript](https://github.com/avvo/javascript-style-guide/blob/master/README.md)
+[← Avvo Coding Styleguides](https://github.com/avvo/coding-style)
 
 ---
 
@@ -29,11 +29,6 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
 ## Source Code Layout
 
 ### Formatting
-
-> Nearly everybody is convinced that every style but their own is
-> ugly and unreadable. Leave out the "but their own" and they're
-> probably right... <br/>
-> -- Jerry Coffin (on indentation)
 
 * Use `UTF-8` as the source file encoding.
 * Use two **space** indentation (aka soft tabs). No hard tabs.
@@ -1362,73 +1357,14 @@ setting the warn level to 0 via `-W0`).
 
 ## Comments
 
-> Good code is its own best documentation. As you're about to add a
-> comment, ask yourself, "How can I improve the code so that this
-> comment isn't needed?" Improve the code and then document it to make
-> it even clearer. <br/>
-> -- Steve McConnell
-
-* Write self-documenting code and ignore the rest of this section. Seriously!
-* Write comments in English.
 * Use one space between the leading `#` character of the comment and the text
   of the comment.
-* Comments longer than a word are capitalized and use punctuation. Use [one
-  space](http://en.wikipedia.org/wiki/Sentence_spacing) after periods.
 * Avoid superfluous comments.
 
     ```Ruby
     # bad
     counter += 1 # Increments counter by one.
     ```
-
-* Keep existing comments up-to-date. An outdated comment is worse than no comment
-at all.
-
-> Good code is like a good joke - it needs no explanation. <br/>
-> -- Russ Olsen
-
-* Avoid writing comments to explain bad code. Refactor the code to
-  make it self-explanatory. (Do or do not - there is no try. --Yoda)
-
-### Comment Annotations
-
-* Annotations should usually be written on the line immediately above
-  the relevant code.
-* The annotation keyword is followed by a colon and a space, then a note
-  describing the problem.
-* If multiple lines are required to describe the problem, subsequent
-  lines should be indented two spaces after the `#`.
-
-    ```Ruby
-    def bar
-      # FIXME: This has crashed occasionally since v3.2.1. It may
-      #   be related to the BarBazUtil upgrade.
-      baz(:quux)
-    end
-    ```
-
-* In cases where the problem is so obvious that any documentation would
-  be redundant, annotations may be left at the end of the offending line
-  with no note. This usage should be the exception and not the rule.
-
-    ```Ruby
-    def bar
-      sleep 100 # OPTIMIZE
-    end
-    ```
-
-* Use `TODO` to note missing features or functionality that should be
-  added at a later date.
-* Use `FIXME` to note broken code that needs to be fixed.
-* Use `OPTIMIZE` to note slow or inefficient code that may cause
-  performance problems.
-* Use `HACK` to note code smells where questionable coding practices
-  were used and should be refactored away.
-* Use `REVIEW` to note anything that should be looked at to confirm it
-  is working as intended. For example: `REVIEW: Are we sure this is how the
-  client does X currently?`
-* Use other custom annotation keywords if it feels appropriate, but be
-  sure to document them in your project's `README` or similar.
 
 ## Classes & Modules
 
@@ -2455,8 +2391,6 @@ pass parameters to their constructors, that is).
 * Code in a functional way, avoiding mutation when that makes sense.
 * Do not mutate arguments unless that is the purpose of the method.
 * Avoid more than three levels of block nesting.
-* Be consistent. In an ideal world, be consistent with these guidelines.
-* Use common sense.
 
 ## Tools
 
@@ -2477,15 +2411,6 @@ and has good Emacs integration.
 on this guide.
 
 
-
-## <a name='contributing'>Contributing</a>
-
-  * [Fork](https://help.github.com/articles/fork-a-repo) the project on GitHub.
-  * Make your feature addition or bug fix in a feature branch. (Include a description of your changes)
-  * Push your feature branch to GitHub.
-  * Send a [Pull Request](https://help.github.com/articles/using-pull-requests).
-
-
 # License
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)
@@ -2493,4 +2418,4 @@ This work is licensed under a [Creative Commons Attribution 3.0 Unported License
 
 ---
 
-Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide) | [JavaScript](https://github.com/avvo/javascript-style-guide)
+[← Avvo Coding Styleguides](https://github.com/avvo/coding-style)

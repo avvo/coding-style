@@ -1,4 +1,4 @@
-Coding Styleguides: [Ruby](https://github.com/avvo/ruby-style-guide/blob/master/README.md) | **Rails** | [JavaScript](https://github.com/avvo/javascript-style-guide/blob/master/README.md)
+[← Avvo Coding Styleguides](https://github.com/avvo/coding-style)
 
 ---
 
@@ -621,15 +621,6 @@ other popular, but flawed gems.
 *needs documentation*
 
 
-
-# <a name='contributing'>Contributing</a>
-
-  * [Fork](https://help.github.com/articles/fork-a-repo) the project on GitHub.
-  * Make your feature addition or bug fix in a feature branch. (Include a description of your changes)
-  * Push your feature branch to GitHub.
-  * Send a [Pull Request](https://help.github.com/articles/using-pull-requests).
-
-
 # License
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)
@@ -637,4 +628,4 @@ This work is licensed under a [Creative Commons Attribution 3.0 Unported License
 
 ---
 
-Coding Styleguides: [Ruby](https://github.com/avvo/ruby-style-guide) | **Rails** | [JavaScript](https://github.com/avvo/javascript-style-guide)
+[← Avvo Coding Styleguides](https://github.com/avvo/coding-style)

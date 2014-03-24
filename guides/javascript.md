@@ -1,4 +1,4 @@
-Coding Styleguides: [Ruby](https://github.com/avvo/ruby-style-guide/blob/master/README.md) | [Rails](https://github.com/avvo/rails-style-guide/blob/master/README.md) | **JavaScript**
+[← Avvo Coding Styleguides](https://github.com/avvo/coding-style)
 
 ---
 
@@ -1477,15 +1477,6 @@ Coding Styleguides: [Ruby](https://github.com/avvo/ruby-style-guide/blob/master/
   - [Dustin Diaz](http://dustindiaz.com/)
   - [nettuts](http://net.tutsplus.com/?s=javascript)
 
-  **[[⬆]](#TOC)**
-
-
-## <a name='contributing'>Contributing</a>
-
-  * [Fork](https://help.github.com/articles/fork-a-repo) the project on GitHub.
-  * Make your feature addition or bug fix in a feature branch. (Include a description of your changes)
-  * Push your feature branch to GitHub.
-  * Send a [Pull Request](https://help.github.com/articles/using-pull-requests).
 
 
 ## <a name='license'>License</a>
@@ -1517,4 +1508,4 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---
 
-Coding Styleguides: [Ruby](https://github.com/avvo/ruby-style-guide) | [Rails](https://github.com/avvo/rails-style-guide) | **JavaScript**
+[← Avvo Coding Styleguides](https://github.com/avvo/coding-style)
