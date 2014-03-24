@@ -28,38 +28,24 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
 
 ## Source Code Layout
 
+### Formatting
+
 > Nearly everybody is convinced that every style but their own is
 > ugly and unreadable. Leave out the "but their own" and they're
 > probably right... <br/>
 > -- Jerry Coffin (on indentation)
 
 * Use `UTF-8` as the source file encoding.
-* Use two **spaces** per indentation level (aka soft tabs). No hard tabs.
-
-  ```Ruby
-
-    # bad - four spaces
-    def some_method
-    ····do_something
-    end
-
-    # good
-    def some_method
-    ··do_something
-    end
-
-  ```
-
+* Use two **space** indentation (aka soft tabs). No hard tabs.
 * Use Unix-style line endings.
+* No trailing whitespace.
 
-* Don't use `;` to separate statements and expressions. As a
-  corollary - use one expression per line.
+* Don't use semicolons. Use one expression per line.
 
     ```Ruby
     # bad
-    puts 'foobar'; # superfluous semicolon
-
-    puts 'foo'; puts 'bar' # two expression on the same line
+    puts 'foobar';
+    puts 'foo'; puts 'bar'
 
     # good
     puts 'foobar'
@@ -70,7 +56,7 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     puts 'foo', 'bar' # this applies to puts in particular
     ```
 
-* Prefer a single-line format for class definitions with no body.
+* Use a single-line format for class definitions with no body.
 
     ```Ruby
     # bad
@@ -81,52 +67,32 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     class FooError < StandardError; end
     ```
 
-* Avoid single-line methods. Although they are somewhat popular in the
-  wild, there are a few peculiarities about their definition syntax
-  that make their use undesirable. At any rate - there should be no more
-  than one expression in a single-line method.
+* Don't use single-line methods.
 
     ```Ruby
     # bad
-    def too_much; something; something_else; end
-
-    # bad - notice that the first ; is required
-    def no_braces_method; body end
-
-    # bad - notice that the second ; is optional
-    def no_braces_method; body; end
-
-    # bad - valid syntax, but no ; make it kind of hard to read
     def some_method() body end
 
     # good
     def some_method
       body
     end
-    ```
 
-    One exception to the rule are empty-body methods.
-
-    ```Ruby
-    # good
-    def no_op; end
+    def no_op; end #empty-body methods are okay
     ```
 
 * Use spaces around operators, after commas, colons and semicolons, around `{`
-  and before `}`. Whitespace might be (mostly) irrelevant to the Ruby
-  interpreter, but its proper use is the key to writing easily
-  readable code.
+  and before `}`.
 
     ```Ruby
     sum = 1 + 2
     a, b = 1, 2
-    1 > 2 ? true : false; puts 'Hi'
+    1 > 2 ? true : false
+    def no_op; end
     [1, 2, 3].each { |e| puts e }
-    ```
 
-    The only exception, regarding operators, is the exponent operator:
+    # Only exception is the exponent operator:
 
-    ```Ruby
     # bad
     e = M * c ** 2
 
@@ -134,7 +100,7 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     e = M * c**2
     ```
 
-* Hash literals should be padded with a single space.
+* Pad Hash literals with a single space.
 
     ```Ruby
     # bad
@@ -154,9 +120,14 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     "string#{expr}"
     ```
 
-* No spaces after `(`, `[` or before `]`, `)`.
+* No space padding inside parens `()` or brackets `[]`.
 
     ```Ruby
+    #bad
+    some( arg ).other
+    [ 1, 2, 3 ].size
+
+    #good
     some(arg).other
     [1, 2, 3].size
     ```
@@ -171,8 +142,7 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     !something
     ```
 
-* Indent `when` as deep as `case`. I know that many would disagree
-  with this one, but it's the style established in both "The Ruby
+* Indent `when` as deep as `case`. It's the style established in both "The Ruby
   Programming Language" and "Programming Ruby".
 
     ```Ruby
@@ -201,7 +171,7 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     end
     ```
 
-* When assigning the result of a conditional expression to a variable, preserve the usual alignment of its branches.
+* Indent conditional expression variable assignments by one soft tab, beneath the variable assignment.
 
     ```Ruby
     # bad
@@ -275,8 +245,7 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
     end
     ```
 
-* Avoid comma after the last parameter in a method call, especially when the
-  parameters are not on separate lines.
+* Don't use comma after the last parameter in a method call.
 
     ```Ruby
     # bad - easier to move/add/remove parameters, but still not preferred
@@ -286,52 +255,49 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
        color,
      )
 
-    # bad
-    some_method(size, count, color, )
-
-    # good
-    some_method(size, count, color)
-
     # good
     some_method(
       size,
       count,
       color
     )
+
+    # bad
+    some_method(size, count, color, )
+
+    # good
+    some_method(size, count, color)
+
     ```
 
-* No spaces around the `=` operator when assigning default values to method parameters:
+* Use spaces around the `=` operator when assigning default values to method parameters:
 
     ```Ruby
     # bad
-    def some_method(arg1 = :default, arg2 = nil, arg3 = [])
+    def some_method(arg1=:default, arg2=nil, arg3=[])
       # do something...
     end
 
     # good
-    def some_method(arg1=:default, arg2=nil, arg3=[])
+    def some_method(arg1 = :default, arg2 = nil, arg3 = [])
       # do something...
     end
     ```
 
-* Avoid line continuation `\` where not required. In practice, avoid using
-  line continuations for anything but string concatenation.
+* Don't use line continuation `\` for anything but string concatenation.
 
     ```Ruby
     # bad
     result = 1 - \
              2
 
-    # bad
-    result = 1 \
-             - 2
-
+    # good
     long_string =
       'First part of the long string' \
       ' and second part of the long string'
     ```
 
-* When continuing a chained method invocation on another line keep the `.` on the second line.
+* Use the dot `.` on new lines when method chaining.
 
     ```Ruby
     # bad - need to consult first line to understand second line
@@ -343,33 +309,15 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
       .four
     ```
 
-* If the parameters of a method call result in a long line, split the
-  parameters onto multiple lines. Align the parameters with a single indent.
+* Use multiple lines if the parameters of a method call result in a long line. Align the parameters with a single indent.
 
     ```Ruby
-    # starting point (line is too long)
+    # bad
     def send_mail(source)
       Mailer.deliver(to: 'bob@example.com', from: 'us@example.com', subject: 'Important message', body: source.text)
     end
 
-    # bad (double indent)
-    def send_mail(source)
-      Mailer.deliver(
-          to: 'bob@example.com',
-          from: 'us@example.com',
-          subject: 'Important message',
-          body: source.text)
-    end
-
-    # bad (deep indent)
-    def send_mail(source)
-      Mailer.deliver(to: 'bob@example.com',
-                     from: 'us@example.com',
-                     subject: 'Important message',
-                     body: source.text)
-    end
-
-    # good (normal indent)
+    # good
     def send_mail(source)
       Mailer.deliver(
         to: 'bob@example.com',
@@ -399,22 +347,20 @@ Coding Styleguides: **Ruby** | [Rails](https://github.com/avvo/rails-style-guide
      ]
     ```
 
-* Add underscores to large numeric literals to improve their readability.
+* Use underscores on large numeric literals to improve their readability.
 
     ```Ruby
-    # bad - how many 0s are there?
+    # bad
     num = 1000000
 
-    # good - much easier to parse for the human brain
+    # good
     num = 1_000_000
     ```
 
 * Use RDoc and its conventions for API documentation.  Don't put an
   empty line between the comment block and the `def`.
-* Limit lines to 80 characters.
-* Avoid trailing whitespace.
-* Don't use block comments. They cannot be preceded by whitespace and are not
-as easy to spot as regular comments.
+
+* Don't use block comments.
 
     ```Ruby
     # bad
@@ -461,12 +407,12 @@ Never use `::` for regular method invocation.
      end
 
      # bad
-     def some_method_with_arguments arg1, arg2
+     def some_method arg1, arg2
        # body omitted
      end
 
      # good
-     def some_method_with_arguments(arg1, arg2)
+     def some_method(arg1, arg2)
        # body omitted
      end
      ```
@@ -509,24 +455,7 @@ Never use `::` for regular method invocation.
     end
     ```
 
-* Always put the condition on the same line as the `if`/`unless` in a multi-line conditional.
-
-    ```Ruby
-    # bad
-    if
-      some_condition
-      do_something
-      do_something_else
-    end
-
-    # good
-    if some_condition
-      do_something
-      do_something_else
-    end
-    ```
-
-* Favor the ternary operator(`?:`) over `if/then/else/end` constructs.
+* Use the ternary operator(`?:`) over `if/then/else/end` constructs.
   It's more common and obviously more concise.
 
     ```Ruby
@@ -602,33 +531,11 @@ Never use `::` for regular method invocation.
     end
     ```
 
-* The `and` and `or` keywords are banned. It's just not worth
-  it. Always use `&&` and `||` instead.
+* Never use `and` or `or`. Use `&&` and `||` instead.
 
-    ```Ruby
-    # bad
-    # boolean expression
-    if some_condition and some_other_condition
-      do_something
-    end
+* Avoid multi-line `?:` ternary operators. Use `if/unless` instead.
 
-    # bad - control flow
-    document.saved? or document.save!
-
-    # good
-    # boolean expression
-    if some_condition && some_other_condition
-      do_something
-    end
-
-    # good - explicit control flow
-    document.save! unless document.saved?
-    ```
-
-* Avoid multi-line `?:` (the ternary operator); use `if/unless` instead.
-
-* Favor modifier `if/unless` usage when you have a single-line
-  body. Another good alternative is the usage of control flow `&&/||`.
+* Use the `if/unless` modifier when you have a single-line body.
 
     ```Ruby
     # bad
@@ -643,8 +550,7 @@ Never use `::` for regular method invocation.
     do_something if some_condition
     ```
 
-* Favor `unless` over `if` for negative conditions (or control
-  flow `||`).
+* Use `unless` over `if` for negative conditions.
 
     ```Ruby
     # bad
@@ -819,11 +725,11 @@ Never use `::` for regular method invocation.
     'test'.upcase
     ```
 
-* Prefer `{...}` over `do...end` for single-line blocks.  Avoid using
-  `{...}` for multi-line blocks (multiline chaining is always
-  ugly). Always use `do...end` for "control flow" and "method
-  definitions" (e.g. in Rakefiles and certain DSLs).  Avoid `do...end`
-  when chaining.
+* Use `{...}` over `do...end` for single-line blocks. 
+* Use `do...end` over `{...}` for multi-line blocks. 
+* Always use `do...end` for "control flow" and "method
+  definitions" (e.g. in Rakefiles and certain DSLs). 
+* Don't use `do...end` when chaining.
 
     ```Ruby
     names = ['Bozhidar', 'Steve', 'Sarah']
@@ -849,10 +755,6 @@ Never use `::` for regular method invocation.
       .select { |name| name.start_with?('S') }
       .map { |name| name.upcase }
     ```
-
-    Some will argue that multiline chaining would look OK with the use of {...}, but they should
-    ask themselves - is this code really readable and can the blocks' contents be extracted into
-    nifty methods?
 
 * Consider using explicit block argument to avoid writing block
   literal that just passes its arguments to another block. Beware of
@@ -1163,8 +1065,7 @@ setting the warn level to 0 via `-W0`).
     # => '20 10'
     ```
 
-* Favor the use of `Array#join` over the fairly cryptic `Array#*` with
-  a string argument.
+* Use `Array#join` over `Array#*`.
 
     ```Ruby
     # bad
@@ -1176,8 +1077,7 @@ setting the warn level to 0 via `-W0`).
     # => 'one, two, three'
     ```
 
-* Use `Array()` instead of `[*var]` or explicit `Array` check, when dealing with a variable you want to treat as an Array, but you're not certain it's
-  an array.
+* Use `Array()` instead of `[*var]` or `.is_a? Array` when dealing with a variable you want to treat as an Array.
 
     ```Ruby
     # bad
@@ -1235,7 +1135,7 @@ setting the warn level to 0 via `-W0`).
     end
     ```
 
-* Avoid the use of `BEGIN` blocks.
+* Don't use `BEGIN` blocks.
 
 * Never use `END` blocks. Use `Kernel#at_exit` instead.
 
@@ -1764,7 +1664,7 @@ to create instances of a particular class.
     end
     ```
 
-* Avoid the usage of class (`@@`) variables due to their "nasty" behavior
+* Don't use class (`@@`) variables due to their "nasty" behavior
 in inheritance.
 
     ```Ruby
@@ -2055,7 +1955,7 @@ introducing new exception classes.
 
 ## Collections
 
-* Prefer literal array and hash creation notation (unless you need to
+* Use literal array and hash creation notation (unless you need to
 pass parameters to their constructors, that is).
 
     ```Ruby
@@ -2068,8 +1968,7 @@ pass parameters to their constructors, that is).
     hash = {}
     ```
 
-* Prefer the literal array syntax to `%w` when you need an array of
-  words (non-empty strings without spaces and special characters in them).
+* Use the literal array syntax vs. `%w` when you need an array of words.
 
     ```Ruby
     # bad
@@ -2079,7 +1978,7 @@ pass parameters to their constructors, that is).
     STATES = ['draft', 'open', 'closed']
     ```
 
-* Prefer the literal array syntax to `%i` when you need an array of symbols.
+* Use the literal array syntax to `%i` when you need an array of symbols.
 
     ```Ruby
     # bad
@@ -2115,12 +2014,13 @@ pass parameters to their constructors, that is).
     arr[100] = 1 # now you have an array with lots of nils
     ```
 
-* When accessing the first or last element from an array, prefer `first` or `last` over `[0]` or `[-1]`.
+* Use `first` or `last` over `[0]` or `[-1]` when accessing the first or last element from an array.
 
 * Use `Set` instead of `Array` when dealing with unique elements. `Set`
   implements a collection of unordered values with no duplicates. This
   is a hybrid of `Array`'s intuitive inter-operation facilities and
   `Hash`'s fast lookup.
+
 * Prefer symbols instead of strings as hash keys.
 
     ```Ruby
@@ -2162,6 +2062,7 @@ pass parameters to their constructors, that is).
 
     ```Ruby
     heroes = { batman: 'Bruce Wayne', superman: 'Clark Kent' }
+
     # bad - if we make a mistake we might not spot it right away
     heroes[:batman] # => "Bruce Wayne"
     heroes[:supermann] # => nil
@@ -2170,7 +2071,7 @@ pass parameters to their constructors, that is).
     heroes.fetch(:supermann)
     ```
 
-* Introduce default values for hash keys via `Hash#fetch` as opposed to using custom logic.
+* Use `Hash#fetch` for default values as opposed to using custom logic.
 
    ```Ruby
    batman = { name: 'Bruce Wayne', is_evil: false }
@@ -2232,7 +2133,7 @@ pass parameters to their constructors, that is).
     char = "c"
     ```
 
-* Don't leave out `{}` around instance and global variables being
+* Use `{}` around instance and global variables being
   interpolated into a string.
 
     ```Ruby
@@ -2263,15 +2164,17 @@ pass parameters to their constructors, that is).
     puts "$global = #{$global}"
     ```
 
-* Avoid using `String#+` when you need to construct large data chunks.
-  Instead, use `String#<<`. Concatenation mutates the string instance in-place
-  and is always faster than `String#+`, which creates a bunch of new string objects.
+* Use `String#<<` over `String#+` for string concatenation. Concatenation mutates the string 
+  instance in-place and is always faster than `String#+`, which creates a bunch of new string 
+  objects.
 
     ```Ruby
-    # good and also fast
-    html = ''
-    html << '<h1>Page title</h1>'
+    # bad
+    paragraphs.each do |paragraph|
+      html + "<p>#{paragraph}</p>"
+    end
 
+    # good
     paragraphs.each do |paragraph|
       html << "<p>#{paragraph}</p>"
     end
