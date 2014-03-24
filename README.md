@@ -58,16 +58,15 @@ at all.
   make it self-explanatory.
 
 
-### Comment Annotations (TODO, FIXME, HACK, etc.)
+### Comment Annotations
 
-* Use `TODO` to note missing features or functionality that should be
+* `TODO`: missing features or functionality that should be
   added at a later date.
-* Use `FIXME` to note broken code that needs to be fixed.
-* Use `OPTIMIZE` to note slow or inefficient code that may cause
+* `FIXME`: broken code that needs to be fixed.
+* `OPTIMIZE`: slow or inefficient code that may cause
   performance problems.
-* Use `HACK` to note code smells where questionable coding practices
-  were used and should be refactored away.
-* Use `REVIEW` to note anything that should be looked at to confirm it
+* `HACK`: code smells where questionable coding practices were used and should be refactored away.
+* `REVIEW`: anything that should be looked at to confirm it
   is working as intended. For example: `REVIEW: Are we sure this is how the
   client does X currently?`
 
@@ -76,7 +75,7 @@ at all.
 * The annotation keyword is followed by a colon and a space, then a note
   describing the problem.
 * If multiple lines are required to describe the problem, subsequent
-  lines should be indented two spaces after the `#`.
+  lines should be indented two spaces after the annotation.
 
     ```Ruby
     def bar
@@ -102,15 +101,15 @@ at all.
 
 Linters make it simple to adhere to the guidelines, so be sure you have them installed!
 
-## Jshint
-For linting JavaScript. Configured with `.jshint` files. To install:
+## JSHint
+[JSHint](http://www.jshint.com/) is a JavaScript code style checker based on Doug Crockford's less forgiving [JSLint](http://www.jslint.com/). Configured with `.jshint` files. To install:
 
 1. `brew install node`
 2. `npm install -g jshint`
 3. If you are using `nvm` and `zsh`, ensure that the line to load `nvm` is in `.zshenv` and not `.zshrc`.
 
 ## Rubocop
-For linting Ruby and rails code. Configured with `.rubocop.yml` files. To install:
+[RuboCop](https://github.com/bbatsov/rubocop) is a Ruby code style checker based on the [Ruby Community Style Guide](https://github.com/bbatsov/ruby-style-guide). Configured with `.rubocop.yml` files. To install:
 
 1. `gem install rubocop`
 
@@ -122,7 +121,7 @@ For linting Ruby and rails code. Configured with `.rubocop.yml` files. To instal
 2. Install linter plugins via Package Control (e.g. `SublimeLinter-rubocop`, `SublimeLinter-jshint`, etc.)
 
 
-## <a name='contributing'>Contributing</a>
+## Contributing
 
   * [Fork](https://help.github.com/articles/fork-a-repo) the project on GitHub.
   * Make your feature addition or bug fix in a feature branch.
