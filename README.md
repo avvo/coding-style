@@ -15,6 +15,7 @@ Welcome! These guides, in combination with our configured linters, should help y
     * [Comments](#comments)
         * [Comment Annotations](#comment-annotations)
   * [Linters](#linters)
+  * [Editor Plugins](#editor-plugins)
   * [Contributing](#contributing)
 
 ## Guides
@@ -126,6 +127,7 @@ Linters make it simple to adhere to the guidelines, so be sure you have them ins
 3. Install linter plugins via Package Control (e.g. `SublimeLinter-rubocop`, `SublimeLinter-jshint`, etc.)
 4. You should now be able to access and configure Sublime Linter under `Tools > SublimeLinter`
 
+**[[⬆]](#TOC)**
 
 ## Contributing
 
