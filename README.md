@@ -113,13 +113,18 @@ Linters make it simple to adhere to the guidelines, so be sure you have them ins
 
 1. `gem install rubocop`
 
+**[[⬆]](#TOC)**
+
+## Editor Plugins
+
 ### SublimeLinter
 
 [SublimeLinter](http://sublimelinter.readthedocs.org/en/latest/index.html) is a Sublime Text plugin that will automatically lint your code as you edit. To install:
 
-1. Install `SublimeLinter` via Package Control
-2. Install linter plugins via Package Control (e.g. `SublimeLinter-rubocop`, `SublimeLinter-jshint`, etc.)
-3. You should now be able to access and configure Sublime Linter under `Tools > SublimeLinter`
+1. Install all linters (JSHint, Rubocop, etc.) beforehand.
+2. Install `SublimeLinter` via Package Control
+3. Install linter plugins via Package Control (e.g. `SublimeLinter-rubocop`, `SublimeLinter-jshint`, etc.)
+4. You should now be able to access and configure Sublime Linter under `Tools > SublimeLinter`
 
 
 ## Contributing
