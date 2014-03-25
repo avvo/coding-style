@@ -102,7 +102,7 @@ at all.
 Linters make it simple to adhere to the guidelines, so be sure you have them installed!
 
 ### JSHint
-[JSHint](http://www.jshint.com/) is a JavaScript code style checker based on Doug Crockford's less forgiving [JSLint](http://www.jslint.com/). Configured with `.jshint` files. To install:
+[JSHint](http://www.jshint.com/) is a JavaScript code style checker based on Doug Crockford's less forgiving [JSLint](http://www.jslint.com/). Configured with `.jshintrc` files. To install:
 
 1. `brew install node`
 2. `npm install -g jshint`
