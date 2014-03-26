@@ -127,7 +127,6 @@ Linters make it simple to adhere to the guidelines, so be sure you have them ins
 3. Install linter plugins via Package Control (e.g. `SublimeLinter-rubocop`, `SublimeLinter-jshint`, etc.)
 4. You should now be able to access and configure Sublime Linter under `Tools > SublimeLinter`
 
-> **Troubleshooting**
 > Not working? These might help:
 > * [SublimeLinter Installation Guide](https://sublimelinter.readthedocs.org/en/latest/installation.html)
 > * [SublimeLinter Troubleshooting](https://sublimelinter.readthedocs.org/en/latest/troubleshooting.html)
