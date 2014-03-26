@@ -118,6 +118,13 @@ Linters make it simple to adhere to the guidelines, so be sure you have them ins
 
 ## Editor Plugins
 
+### EditorConfig
+[EditorConfig](http://editorconfig.org/#download) will automatically configure your editor for our file format (utf-8, line-endings, tab-width, etc.). It supports most editors.
+
+[Download EditorConfig for your editor](http://editorconfig.org/#download)
+
+*Sublime Text users: download 'EditorConfig' through PackageControl*
+
 ### SublimeLinter
 
 [SublimeLinter](http://sublimelinter.readthedocs.org/en/latest/index.html) is a Sublime Text plugin that will automatically lint your code as you edit. To install:
