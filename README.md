@@ -131,7 +131,11 @@ Linters make it simple to adhere to the guidelines, so be sure you have them ins
 
 1. Install all linters (JSHint, Rubocop, etc.) beforehand.
 2. Install `SublimeLinter` via Package Control
-3. Install linter plugins via Package Control (e.g. `SublimeLinter-rubocop`, `SublimeLinter-jshint`, etc.)
+3. Install linter plugins via Package Control
+   * [SublimeLinter-rubocop](https://github.com/SublimeLinter/SublimeLinter-rubocop)
+   * [SublimeLinter-jshint](https://github.com/SublimeLinter/SublimeLinter-jshint)
+   * [SublimeLinter-annotations](https://github.com/SublimeLinter/SublimeLinter-annotations)
+   * Find more on the [SublimeLinter GitHub](https://github.com/SublimeLinter)…
 4. You should now be able to access and configure Sublime Linter under `Tools > SublimeLinter`
 
 > Not working? These might help:
