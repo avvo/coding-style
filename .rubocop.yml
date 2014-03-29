@@ -1,3 +1,5 @@
+# Avvo Rubocop Config v1.1
+
 # Commented blocks are Rubocop's default settings.
 # See https://github.com/bbatsov/rubocop/blob/master/config/default.yml
 
@@ -213,6 +215,10 @@ DotPosition:
   SupportedStyles:
     - leading
     - trailing
+
+DoubleNegation:
+  Description: 'Checks for uses of double negation (!!).'
+  Enabled: false
 
 EmptyLineBetweenDefs:
   Description: 'Use empty lines between defs.'
