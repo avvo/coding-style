@@ -328,10 +328,10 @@ HashMethods:
   Enabled: true
 
 HashSyntax:
-  Description: 'Prefer Ruby 1.9 hash syntax { a: 1, b: 2 } over 1.8 syntax { :a => 1, :b => 2 }.'
+  Description: 'Prefer hash rocket syntax { :a => 1, :b => 2 } over Ruby 1.9 hash syntax { a: 1, b: 2 }.'
   Enabled: true
 
-  EnforcedStyle: ruby19
+  EnforcedStyle: hash_rockets
   SupportedStyles:
     - ruby19
     - hash_rockets
