@@ -1,4 +1,4 @@
-# Avvo Rubocop Config v1.1
+# Avvo Rubocop Config v1.2
 
 # Commented blocks are Rubocop's default settings.
 # See https://github.com/bbatsov/rubocop/blob/master/config/default.yml
@@ -288,7 +288,7 @@ FavorUntilOverNegatedWhile:
 
 FileName:
   Description: 'Use snake_case for source file names.'
-  Enabled: true
+  Enabled: false
 
 FinalNewline:
   Description: 'Checks for a final newline in a source file.'
