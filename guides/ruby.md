@@ -95,14 +95,14 @@
     e = M * c**2
     ```
 
-* Pad Hashes with a single space.
+* Pad Hash literals with a single space.
 
     ```Ruby
     # bad
-    {:one => 1, :two => 2}
-
+    {one: 1, two: 2}
+    
     # good
-    { :one => 1, :two => 2 }
+    { one: 1, two: 2 }
     ```
 
 * No spaces for embedded expression.
@@ -110,7 +110,7 @@
     ```Ruby
     # bad
     "string#{ expr }"
-
+    
     # good
     "string#{expr}"
     ```
@@ -199,7 +199,7 @@
       when 1940..1950 then 'Bebop'
       else 'Jazz'
       end
-
+      
     # bad
     result = if some_cond
       calc_something
@@ -309,16 +309,16 @@
     ```Ruby
     # bad
     def send_mail(source)
-      Mailer.deliver(:to => 'bob@example.com', :from => 'us@example.com', :subject => 'Important message', :body => source.text)
+      Mailer.deliver(to: 'bob@example.com', from: 'us@example.com', subject: 'Important message', body: source.text)
     end
 
     # good
     def send_mail(source)
       Mailer.deliver(
-        :to      => 'bob@example.com',
-        :from    => 'us@example.com',
-        :subject => 'Important message',
-        :body    => source.text
+        to: 'bob@example.com',
+        from: 'us@example.com',
+        subject: 'Important message',
+        body: source.text
       )
     end
     ```
@@ -685,10 +685,10 @@ Never use `::` for regular method invocation.
 
     ```Ruby
     # bad
-    user.set({ :name => 'John', :age => 45, :permissions => { :read => true } })
+    user.set({ name: 'John', age: 45, permissions: { read: true } })
 
     # good
-    user.set(:name => 'John', :age => 45, :permissions => { :read => true })
+    user.set(name: 'John', age: 45, permissions: { read: true })
     ```
 
 * Omit both the outer braces and parentheses for methods that are
@@ -697,10 +697,10 @@ Never use `::` for regular method invocation.
     ```Ruby
     class Person < ActiveRecord::Base
       # bad
-      validates(:name, { :presence => true, :length => { :within => 1..10 } })
+      validates(:name, { presence: true, length: { within: 1..10 } })
 
       # good
-      validates :name, :presence => true, :length => { :within => 1..10 }
+      validates :name, presence: true, length: { within: 1..10 }
     end
     ```
 
@@ -720,10 +720,10 @@ Never use `::` for regular method invocation.
     'test'.upcase
     ```
 
-* Use `{...}` over `do...end` for single-line blocks.
-* Use `do...end` over `{...}` for multi-line blocks.
+* Use `{...}` over `do...end` for single-line blocks. 
+* Use `do...end` over `{...}` for multi-line blocks. 
 * Always use `do...end` for "control flow" and "method
-  definitions" (e.g. in Rakefiles and certain DSLs).
+  definitions" (e.g. in Rakefiles and certain DSLs). 
 * Don't use `do...end` when chaining.
 
     ```Ruby
@@ -1049,14 +1049,14 @@ setting the warn level to 0 via `-W0`).
     # => '20 10'
 
     # good
-    sprintf('%{first} %{second}', :first => 20, :second => 10)
+    sprintf('%{first} %{second}', first: 20, second: 10)
     # => '20 10'
 
     format('%d %d', 20, 10)
     # => '20 10'
 
     # good
-    format('%{first} %{second}', :first => 20, :second => 10)
+    format('%{first} %{second}', first: 20, second: 10)
     # => '20 10'
     ```
 
@@ -1077,7 +1077,7 @@ setting the warn level to 0 via `-W0`).
     ```Ruby
     # bad
     [*paths].each { |path| do_something(path) }
-
+    
     # bad
     paths = [paths] unless paths.is_a? Array
     paths.each { |path| do_something(path) }
@@ -1273,7 +1273,7 @@ setting the warn level to 0 via `-W0`).
       def update
       end
     end
-
+    
     # good
     class Person
       def update!
@@ -1321,12 +1321,12 @@ setting the warn level to 0 via `-W0`).
     ```
 
 * Prefer `map` over `collect`, `detect` over `find`, `select` over
-  `find_all`, `inject` over `reduce`,  and `length` over `size`.
+  `find_all`, `inject` over `reduce`,  and `length` over `size`. 
 
   * This is not a hard requirement; if the use of the alias enhances
     readability, it's ok to use it. The rhyming methods are inherited from
-    Smalltalk and are not common in other programming languages.
-
+    Smalltalk and are not common in other programming languages. 
+    
   * The reason the use of `select` is encouraged over `find_all` is that it
     goes together nicely with `reject` and its name is pretty self-explanatory.
 
@@ -1933,14 +1933,14 @@ pass parameters to their constructors, that is).
 
     # good
     VALUES = [1001, 2020, 3333]
-
+    
     # good - easier to move/add/remove items
     VALUES = [
        1001,
        2020,
        3333,
      ]
-
+    
     ```
 
 * Avoid the creation of huge gaps in arrays.
@@ -1964,19 +1964,19 @@ pass parameters to their constructors, that is).
     hash = { 'one' => 1, 'two' => 2, 'three' => 3 }
 
     # good
-    hash = { :one => 1, :two => 2, :three => 3 }
+    hash = { one: 1, two: 2, three: 3 }
     ```
 
 * Avoid the use of mutable objects as hash keys.
 
-* Use hash rocket syntax.
+* Use the hash literal syntax when your hash keys are symbols.
 
     ```Ruby
     # bad
-    hash = { one: 1, two: 2, three: 3 }
+    hash = { :one => 1, :two => 2, :three => 3 }
 
     # good
-    hash = { :one => 1, :two => 2, :three => 3 }
+    hash = { one: 1, two: 2, three: 3 }
     ```
 
 * Use `Hash#key?` instead of `Hash#has_key?` and `Hash#value?` instead
@@ -1997,7 +1997,7 @@ pass parameters to their constructors, that is).
 * Use `Hash#fetch` when dealing with hash keys that should be present.
 
     ```Ruby
-    heroes = { :batman => 'Bruce Wayne', :superman => 'Clark Kent' }
+    heroes = { batman: 'Bruce Wayne', superman: 'Clark Kent' }
 
     # bad - if we make a mistake we might not spot it right away
     heroes[:batman] # => "Bruce Wayne"
@@ -2010,7 +2010,7 @@ pass parameters to their constructors, that is).
 * Use `Hash#fetch` for default values as opposed to using custom logic.
 
    ```Ruby
-   batman = { :name => 'Bruce Wayne', :is_evil => false }
+   batman = { name: 'Bruce Wayne', is_evil: false }
 
    # bad - if we just use || operator with falsy value we won't get the expected result
    batman[:is_evil] || true # => true
@@ -2022,7 +2022,7 @@ pass parameters to their constructors, that is).
 * Prefer the use of the block instead of the default value in `Hash#fetch`.
 
    ```Ruby
-   batman = { :name => 'Bruce Wayne' }
+   batman = { name: 'Bruce Wayne' }
 
    # bad - if we use the default value, we eager evaluate it
    # so it can slow the program down if done multiple times
@@ -2100,8 +2100,8 @@ pass parameters to their constructors, that is).
     puts "$global = #{$global}"
     ```
 
-* Use `String#<<` over `String#+` for string concatenation. Concatenation mutates the string
-  instance in-place and is always faster than `String#+`, which creates a bunch of new string
+* Use `String#<<` over `String#+` for string concatenation. Concatenation mutates the string 
+  instance in-place and is always faster than `String#+`, which creates a bunch of new string 
   objects.
 
     ```Ruby
