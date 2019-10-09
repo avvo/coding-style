@@ -436,6 +436,9 @@ The following section are automatically applied by the code formatter in Elixir 
 
 ## Formatting
 
+Elixir v1.6 introduced a [Code Formatter](https://hexdocs.pm/elixir/Code.html#format_string!/2) and [Mix format](https://hexdocs.pm/mix/Mix.Tasks.Format.html) task.
+The formatter should be preferred for all new projects and source code.
+
 The rules below are automatically applied by the code formatter in Elixir v1.6.
 They are provided here for documentation purposes and for those maintaining older codebases.
 
