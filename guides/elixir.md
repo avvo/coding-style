@@ -70,6 +70,57 @@ The following section are automatically applied by the code formatter in Elixir 
   result = String.strip(input)
   ```
 
+* <a name="with-else-statement"></a>
+  When using the with statement to declare happy path, always remember to handle exceptions in `else`
+
+  ```elixir
+  # Bad
+  with {:ok, json_resp} <- Jason.decode(raw_resp),
+       {:ok, status_code} <- Map.fetch(json_resp, :status_code) do
+    # do something
+  end
+
+  # Good
+  with {:ok, json_resp} <- Jason.decode(raw_resp),
+       {:ok, status_code} <- Map.fetch(json_resp, :status_code) do
+    # do something
+  else
+    {:error, %Jason.DecodeError{}} ->
+      # handle Jason.decode error
+
+    :error ->
+      # handle Map.fetch error
+  end
+  ```
+
+* <a name="with-wrap-results"></a>
+  When different expressions in the head of the with statement might return same error wrap the into individual tuples so that you could differentiate them in `else` clause.
+
+  For example, both Map.fetch and Integer.parse in "bad case" return `:error`
+
+  ```elixir
+  # Both expressions might fail with the same :error
+  with quantity <- Map.fetch(candies, :quantity),
+       {:ok, quantity} <- Integer.parse(quantity) do
+    # do something with parsed quantity number
+  else
+    :error ->
+      # we don't know which expression failed
+  end
+
+  # Name your expressions by wrapping them into tuples
+  with {:fetch, quantity}  <- {:fetch, Map.fetch(candies, :quantity)},
+       {:parse, {:ok, quantity}} <- {:parse, Integer.parse(quantity)} do
+    # do something with parsed quantity number
+  else
+    {:fetch, :error} ->
+      # handle Map.fetch error
+
+    {:parse, :error} ->
+      # handle Integer.parse error
+  end
+  ```
+
 * <a name="anonymous-pipeline"></a>
   Don't use anonymous functions in pipelines.
   <sup>[[link](#anonymous-pipeline)]</sup>
@@ -555,6 +606,46 @@ They are provided here for documentation purposes and for those maintaining olde
   Task.async(fn ->
     ExUnit.Diff.script(left, right)
   end)
+  ```
+
+* <a name="one-line-functions"></a>
+  One-line functions with the same name/different arity should not have spaces between the definitions unless they are too long to fit on the line
+
+  ```elixir
+  # not preferred
+  def some_function([]), do: :do_something
+
+  def some_function(_), do: :do_something_else
+
+  # preferred
+  def some_function([]), do: :do_somethingq
+  def some_function(_), do: :do_something_else
+  ```
+
+* <a name="long-dos"></a>
+  If the function head and `do:` clause are too long to fit on the same line, put
+  `do:` on a new line, indented one level more than the previous line.
+  <sup>[[link](#long-dos)]</sup>
+
+  ```elixir
+  def some_function([:foo, :bar, :baz] = args),
+    do: Enum.map(args, fn arg -> arg <> " is on a very long line!" end)
+  ```
+
+  When the `do:` clause starts on its own line, treat it as a multiline
+  function by separating it with blank lines.
+
+  ```elixir
+  # not preferred
+  def some_function([]), do: :empty
+  def some_function(_),
+    do: :very_long_line_here
+
+  # preferred
+  def some_function([]), do: :empty
+
+  def some_function(_),
+    do: :very_long_line_here
   ```
 
 ### Indentation
