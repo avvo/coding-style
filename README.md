@@ -23,6 +23,7 @@ Welcome! These guides, in combination with our configured linters, should help y
 * [Ruby](https://github.com/avvo/coding-style/blob/master/guides/ruby.md)
 * [Rails](https://github.com/avvo/coding-style/blob/master/guides/rails.md)
 * [JavaScript](https://github.com/avvo/coding-style/blob/master/guides/javascript.md)
+* [Elixir](https://github.com/avvo/coding-style/blob/master/guides/elixir.md)
 
 
 ## General Rules
